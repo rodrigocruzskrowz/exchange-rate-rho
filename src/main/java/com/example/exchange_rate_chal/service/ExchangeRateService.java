@@ -5,6 +5,7 @@ import com.example.exchange_rate_chal.model.dto.ConversionResponse;
 import com.example.exchange_rate_chal.model.dto.ExchangeRateResponse;
 import com.example.exchange_rate_chal.model.dto.RateResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
 public class ExchangeRateService {
     private final ExchangeRateClient client;
 
+    @Cacheable(value = "rates", key = "#from + '-' + #to")
     public RateResponse getRate(String from, String to) {
         ExchangeRateResponse response = client.getRates(from, to);
 
@@ -28,6 +30,7 @@ public class ExchangeRateService {
                 .build();
     }
 
+    @Cacheable(value = "rates", key = "#from")
     public List<RateResponse> getAllRates(String from) {
         ExchangeRateResponse response = client.getRates(from, null);
 
@@ -41,6 +44,7 @@ public class ExchangeRateService {
                 .toList();
     }
 
+    @Cacheable(value = "conversions", key = "#from + '-' + #to + '-' + #amount")
     public ConversionResponse convert(String from, String to, double amount) {
         var response = client.convert(from, to, amount);
 
@@ -52,6 +56,7 @@ public class ExchangeRateService {
                 .build();
     }
 
+    @Cacheable(value = "conversions", key = "#from + '-' + #suppliedCurrencies.toString() + '-' + #amount")
     public List<ConversionResponse> convertSuppliedCurrencies(String from, List<String> suppliedCurrencies, double amount) {
         String currencies = String.join(",", suppliedCurrencies);
 

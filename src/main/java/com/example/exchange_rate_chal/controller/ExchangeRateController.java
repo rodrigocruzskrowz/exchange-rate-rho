@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/rates")
 @RequiredArgsConstructor
 public class ExchangeRateController {
     private final ExchangeRateService service;
@@ -21,7 +20,7 @@ public class ExchangeRateController {
             summary = "Get exchange rate",
             description = "Retrieve the exchange rate from a source currency to a target currency."
     )
-    @GetMapping("/{from}/{to}")
+    @GetMapping("/rates/{from}/{to}")
     public ResponseEntity<RateResponse> getRate(
             @Parameter(description = "Source currency", example = "EUR")
             @PathVariable String from,
@@ -35,7 +34,7 @@ public class ExchangeRateController {
             summary = "Get all exchange rates",
             description = "Retrieve exchange rates from a source currency to all available target currencies."
     )
-    @GetMapping("/{from}")
+    @GetMapping("/rates/{from}")
     public ResponseEntity<List<RateResponse>> getAllRates(
             @Parameter(description = "Source currency", example = "EUR")
             @PathVariable String from) {

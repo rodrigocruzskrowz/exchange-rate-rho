@@ -2,13 +2,20 @@ spring:
   application:
     name: exchange-rate-chal
 
-  server:
-    port: 8080
-
   exchangerate:
     base-url: http://api.exchangerate.host
     access-key: ${EXCHANGERATE_ACCESS_KEY:80350e608951d20e11379447dd7fc403}
 
+  cache:
+    type: caffeine
+    caffeine:
+      spec: maximumSize=1000,expireAfterWrite=60s
 
+server:
+  port: 8080
 
-
+management:
+  endpoints:
+    web:
+      exposure:
+        include: caches, health, info
