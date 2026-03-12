@@ -1,3 +1,14 @@
 spring:
   application:
     name: exchange-rate-chal
+
+  server:
+    port: 8080
+
+  exchangerate:
+    base-url: http://api.exchangerate.host
+    access-key: ${EXCHANGERATE_ACCESS_KEY:80350e608951d20e11379447dd7fc403}
+
+
+
+
