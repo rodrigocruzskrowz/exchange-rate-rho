@@ -11,5 +11,6 @@ public class ConversionResponse {
     private String from;
     private String to;
     private Double amount;
+    private Double rate;
     private Double result;
 }

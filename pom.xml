@@ -107,6 +107,12 @@
 			<version>8.7.0</version>
 		</dependency>
 
+		<!-- GraphQL -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-graphql</artifactId>
+		</dependency>
+
 	</dependencies>
 
 

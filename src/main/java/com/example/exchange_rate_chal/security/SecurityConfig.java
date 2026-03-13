@@ -35,7 +35,8 @@ public class SecurityConfig {
                                 "/api-docs/**",
                                 "/v3/api-docs/**",
                                 "/v3/api-docs.yaml",
-                                "/actuator/**"
+                                "/actuator/**",
+                                "/graphiql/**"
                         ).permitAll()
                         .anyRequest().authenticated()
                 )

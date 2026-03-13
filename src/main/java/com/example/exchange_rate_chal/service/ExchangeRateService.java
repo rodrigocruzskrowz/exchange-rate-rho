@@ -48,10 +48,13 @@ public class ExchangeRateService {
     public ConversionResponse convert(String from, String to, double amount) {
         var response = client.convert(from, to, amount);
 
+        Double rate = response.getResult() / amount;
+
         return ConversionResponse.builder()
                 .from(from.toUpperCase())
                 .to(to.toUpperCase())
                 .amount(amount)
+                .rate(rate)
                 .result(response.getResult())
                 .build();
     }
@@ -70,6 +73,7 @@ public class ExchangeRateService {
                             .from(from.toUpperCase())
                             .to(to)
                             .amount(amount)
+                            .rate(rate)
                             .result(amount * rate)
                             .build();
                 })
