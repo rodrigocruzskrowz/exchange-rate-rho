@@ -16,6 +16,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class SecurityConfig {
     private final AuthTokenFilter authJwtTokenFilter;
+    private final RateLimitingFilter rateLimitFilter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -31,7 +32,6 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/api/auth/**",
                                 "/swagger-ui/**",
-                                "/swagger-ui.html",
                                 "/api-docs/**",
                                 "/v3/api-docs/**",
                                 "/v3/api-docs.yaml",
@@ -39,7 +39,8 @@ public class SecurityConfig {
                         ).permitAll()
                         .anyRequest().authenticated()
                 )
-                .addFilterBefore(authJwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(authJwtTokenFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(rateLimitFilter, AuthTokenFilter.class);
 
         return http.build();
     }

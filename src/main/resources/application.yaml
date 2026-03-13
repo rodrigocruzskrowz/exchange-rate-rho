@@ -23,3 +23,8 @@ management:
 jwt:
   secret: ${JWT_BASE64_SECRET:c2VjcmV0LWRldmVsb3BtZW50LWtleS1uZWVkcy10by1iZS1sb25nZXI=}
   expiration-ms: 120000
+
+rate-limit:
+  capacity: 5
+  refill-tokens: 1
+  refill-ms: 10000
