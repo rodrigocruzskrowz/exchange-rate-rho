@@ -19,3 +19,7 @@ management:
     web:
       exposure:
         include: caches, health, info
+
+jwt:
+  secret: ${JWT_BASE64_SECRET:c2VjcmV0LWRldmVsb3BtZW50LWtleS1uZWVkcy10by1iZS1sb25nZXI=}
+  expiration-ms: 120000
