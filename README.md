@@ -88,7 +88,7 @@ Authorization: Bearer <your_token>
 
 | Interface | URL | Description |
 |-----------|-----|-------------|
-| Swagger UI | `http://localhost:8080/swagger-ui.html` | REST API documentation and testing |
+| Swagger UI | `http://localhost:8080/swagger-ui/index.html` | REST API documentation and testing |
 | GraphiQL | `http://localhost:8080/graphiql` | GraphQL interactive interface |
 | Actuator Caches | `http://localhost:8080/actuator/caches` | Active cache information |
 
