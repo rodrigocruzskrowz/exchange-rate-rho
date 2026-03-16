@@ -5,6 +5,7 @@ import com.example.exchange_rate_chal.model.dto.RateResponse;
 import com.example.exchange_rate_chal.service.ExchangeRateService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
+@Tag(name = "Exchange Rates", description = "Retrieving exchange rates and performing currency conversions")
 public class ExchangeRateController {
     private final ExchangeRateService service;
 

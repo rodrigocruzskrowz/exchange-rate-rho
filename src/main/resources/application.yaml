@@ -15,6 +15,10 @@ spring:
     graphiql:
       enabled: true
 
+springdoc:
+  swagger-ui:
+    tags-sorter: alpha
+
 server:
   port: 8080
 
